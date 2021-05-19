@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "quote-of-the-week-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/quoteOfTheWeek/QuoteOfTheWeekWebPart.js",
+          "manifest": "./src/webparts/quoteOfTheWeek/QuoteOfTheWeekWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "QuoteOfTheWeekWebPartStrings": "lib/webparts/quoteOfTheWeek/loc/{locale}.js"
+  }
+}
