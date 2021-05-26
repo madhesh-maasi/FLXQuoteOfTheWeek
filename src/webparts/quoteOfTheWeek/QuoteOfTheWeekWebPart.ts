@@ -54,8 +54,8 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 <div class="modal-dialog quote-modal">
 <div class="modal-content">
 <div class="modal-header">
-<h5 class="modal-title" id="quotesModalLabel">Add Quotes</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<h5 class="modal-title w-100 fw-bold text-center" id="quotesModalLabel">Add / Edit Quotes</h5>
+<!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 </div>
 <div class="modal-body">
 <div class="row my-2 justify-content-center"><div class="col-1"></div><div class="col-4 text-center fw-bolder">Date</div><div class="col-7 text-center fw-bolder">Quote</div></div>
@@ -128,8 +128,10 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 </h6>
 </div>
 <div class="section-action my-2 mx-2 row align-items-center justify-content-end">
-<span class="action-btn action-view mx-1 col-1" data-bs-toggle="modal" data-bs-target="#quotesViewModal"></span>
-<span class="action-btn action-add mx-1 col-1" data-bs-toggle="modal" data-bs-target="#quotesModal" id="btnadd"></span>
+<div class="col p-0 d-flex align-items-center justify-content-end">
+<span class="action-btn action-view mx-1" data-bs-toggle="modal" data-bs-target="#quotesViewModal"></span>
+<span class="action-btn action-add mx-1" data-bs-toggle="modal" data-bs-target="#quotesModal" id="btnadd"></span>
+</div>
 </div>    
 <div class="card p-4 m-2">
 <div class="card-body p-4 ">
@@ -351,7 +353,7 @@ disableallfields();
     }).then(b => {
         console.log(b);
     });
-  }
+  } 
   else if($("#add-quotes2").val()!=""){
     list.items.add({ 
       WeekStartDate: $("#add-date2").val(),
