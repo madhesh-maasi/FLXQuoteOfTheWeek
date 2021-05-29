@@ -44,7 +44,7 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
       });  
     }); 
   }  
-  public render(): void {    
+  public render(): void {                 
     siteURL = this.context.pageContext.web.absoluteUrl;
   
     this.domElement.innerHTML = `
@@ -52,23 +52,23 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 
 <div class="modal fade" id="quotesModal" tabindex="-1" aria-labelledby="quotesModalLabel" aria-hidden="true">
 <div class="modal-dialog quote-modal">
-<div class="modal-content">
+<div class="modal-content rounded-0">
 <div class="modal-header">
 <h5 class="modal-title w-100 fw-bold text-center" id="quotesModalLabel">Add / Edit Quotes</h5>
 <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 </div>
-<div class="modal-body">
+<div class="modal-body">  
 <div class="row my-2 justify-content-center"><div class="col-1"></div><div class="col-4 text-center fw-bolder">Date</div><div class="col-7 text-center fw-bolder">Quote</div></div>
-<div class="row align-items-start my-2"><div class="col-1">1</div><div class="col-4"><input type="date" class="form-control disabledate" id="add-date1" aria-describedby=""></div><div class="col-7"><textarea class="form-control" id="add-quotes1" aria-describedby=""></textarea></div></div>
-<div class="row align-items-start my-2"><div class="col-1">2</div><div class="col-4"><input type="date" class="form-control disabledate" id="add-date2" aria-describedby=""></div><div class="col-7"><textarea class="form-control" id="add-quotes2" aria-describedby=""></textarea></div></div>
-<div class="row align-items-start my-2"><div class="col-1">3</div><div class="col-4"><input type="date" class="form-control disabledate" id="add-date3" aria-describedby=""></div><div class="col-7"><textarea class="form-control" id="add-quotes3" aria-describedby=""></textarea></div></div>
-<div class="row align-items-start my-2"><div class="col-1">4</div><div class="col-4"><input type="date" class="form-control disabledate" id="add-date4" aria-describedby=""></div><div class="col-7"><textarea class="form-control" id="add-quotes4" aria-describedby=""></textarea></div></div>
-<div class="row align-items-start my-2"><div class="col-1">5</div><div class="col-4"><input type="date" class="form-control disabledate" id="add-date5" aria-describedby=""></div><div class="col-7"><textarea class="form-control" id="add-quotes5" aria-describedby=""></textarea></div></div>
+<div class="row align-items-start my-4 mx-2"><div class="col-1">1</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="add-date1" aria-describedby=""></div><div class="col-7"><textarea class="form-control rounded-0" id="add-quotes1" aria-describedby=""></textarea></div></div>
+<div class="row align-items-start my-4 mx-2"><div class="col-1">2</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="add-date2" aria-describedby=""></div><div class="col-7"><textarea class="form-control rounded-0" id="add-quotes2" aria-describedby=""></textarea></div></div>
+<div class="row align-items-start my-4 mx-2"><div class="col-1">3</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="add-date3" aria-describedby=""></div><div class="col-7"><textarea class="form-control rounded-0" id="add-quotes3" aria-describedby=""></textarea></div></div>
+<div class="row align-items-start my-4 mx-2"><div class="col-1">4</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="add-date4" aria-describedby=""></div><div class="col-7"><textarea class="form-control rounded-0" id="add-quotes4" aria-describedby=""></textarea></div></div>
+<div class="row align-items-start my-4 mx-2"><div class="col-1">5</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="add-date5" aria-describedby=""></div><div class="col-7"><textarea class="form-control rounded-0" id="add-quotes5" aria-describedby=""></textarea></div></div>
 
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" id="btnclose">Close</button>
-<button type="button" class="btn btn-sm btn-theme" id="btnsubmit">Submit</button>
+</div>   
+<div class="modal-footer footer-edit-quoteofweek">
+<button type="button" class="btn btn-sm btn-secondary rounded-0" data-bs-dismiss="modal" id="btnclose">Close</button>
+<button type="button" class="btn btn-sm btn-theme rounded-0" id="btnsubmit">Submit</button>
 </div>
 </div>
 </div>
@@ -100,13 +100,15 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 
 <div class="modal fade" id="quotesViewModal" tabindex="-1" aria-labelledby="quotesViewModalLabel" aria-hidden="true">
 <div class="modal-dialog quote-modal">
-<div class="modal-content">
+<div class="modal-content rounded-0">
 <div class="modal-header">
-<h5 class="modal-title" id="quotesViewModalLabel">View Quotes</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<h5 class="modal-title fw-bold w-100 text-center" id="quotesViewModalLabel">View Quotes</h5>
+<!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
 </div>
 <div class="modal-body">
-<div class="row my-2 justify-content-center"><div class="col-1"></div><div class="col-4 text-center fw-bolder">Date</div><div class="col-7 text-center fw-bolder">Quote</div></div>
+<div class="row my-2 justify-content-center">
+<div class="col-1"></div>
+<div class="col-4 text-center fw-bolder">Date</div><div class="col-7 text-center fw-bolder">Quote</div></div>
 <div id="ViewQuotesoftheweek"></div>
 <!--<div class="row align-items-start my-3"><div class="col-1">1</div><div class="col-4"><input type="date" class="form-control" id="" aria-describedby=""></div><div class="col-7"><label>Sample</label></div></div>
 <div class="row align-items-start my-3"><div class="col-1">2</div><div class="col-4"><input type="date" class="form-control" id="" aria-describedby=""></div><div class="col-7"><label>Sample</label></div></div>
@@ -115,11 +117,11 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 <div class="row align-items-start my-3"><div class="col-1">5</div><div class="col-4"><input type="date" class="form-control" id="" aria-describedby=""></div><div class="col-7"><label>Sample</label></div></div>-->
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+<button type="button" class="btn btn-sm btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
 <!--<button type="button" class="btn btn-sm btn-theme" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#quoteseditModal">Edit</button>-->
 </div>
 </div>
-</div>
+</div>  
 </div>
 
 <div class="border bg-white">
@@ -265,30 +267,30 @@ viewQuotes();
   {
     var htmlforviewquotes="";
     var htmlforeditquotes="";
-    var count=0;
+    var count=0; 
     console.log(item);
     for(var i=0;i<item.length;i++){
       var startdate=new Date(item[i].WeekStartDate);
       var sdate=new Date(item[i].WeekStartDate);
       var Edate=sdate.setDate(sdate.getDate() + 6);
-var enddate=new Date(Edate);
+var enddate=new Date(Edate);  
 var startdatemt=moment(startdate).format("YYYY-MM-DD");
 var enddatemt=moment(enddate).format("YYYY-MM-DD");
 var week1mt=moment(week1).format("YYYY-MM-DD");
 var week2mt=moment(week2).format("YYYY-MM-DD");
-var week3mt=moment(week3).format("YYYY-MM-DD");
+var week3mt=moment(week3).format("YYYY-MM-DD");  
 var week4mt=moment(week4).format("YYYY-MM-DD");
 var week5mt=moment(week5).format("YYYY-MM-DD");
 
       if(week1mt >= startdatemt && week1mt < enddatemt || week2mt >= startdatemt && week2mt < enddatemt || week3mt >= startdatemt && week3mt < enddatemt || week4mt >= startdatemt && week4mt < enddatemt || week5mt >= startdatemt && week5mt < enddatemt){
         count++;
-htmlforviewquotes+=`<div class="row align-items-start my-3"><div class="col-1">${count}</div><div class="col-4"><input type="date" class="form-control disabledate" id="" aria-describedby="" value="${startdatemt}"></div><div class="col-7 divlabel"><label>${item[i].Quotesoftheweek}</label></div></div>`;
+htmlforviewquotes+=`<div class="row align-items-start my-4 mx-2"><div class="col-1">${count}</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="" aria-describedby="" value="${startdatemt}"></div><div class="col-7 divlabel"><label>${item[i].Quotesoftheweek}</label></div></div>`;
 
 htmlforeditquotes+=`<div class="row align-items-start my-2"><div class="col-1">${count}</div><div class="col-4"><input type="date" class="form-control disabledate" id="update-date${count}" aria-describedby="" value="${startdatemt}" ></div><div class="col-7"><textarea class="form-control update-quotes" id="update-quotes${count}" aria-describedby="" data-index=${count-1}>${item[i].Quotesoftheweek}</textarea></div></div>`;
-IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
+IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});  
       }
     }    
-
+ 
 $("#ViewQuotesoftheweek").html("");
 $("#ViewQuotesoftheweek").html(htmlforviewquotes);
 
@@ -410,7 +412,7 @@ disableallfields();
         console.log(b);
     });
   }
-  await AlertMessage("Submitted Successfully");  
+  await  AlertMessage("<div class='alertfy-success'>Submitted successfully</div>");   
   }
 
   async function updateQuotes() {
@@ -429,11 +431,11 @@ disableallfields();
                     await sp.web.lists
                       .getByTitle("Quotesoftheweek")
                        .items.getById(Id)
-                       .update(requesttaskdata).then(function (data) {
+                       .update(requesttaskdata).then(function (data) {             
                       count++;
                       if(count==IDarray.length)
                       {
-                        AlertMessage("Submitted Successfully");
+                       AlertMessage("Something went wrong.please contact system admin"); 
                       }
                       
                     })
@@ -441,7 +443,7 @@ disableallfields();
                       ErrorCallBack(error, "updateQuotes");
                     });
                     
-                  } 
+                  }  
     }
 
   
@@ -456,12 +458,12 @@ disableallfields();
     await sp.web.lists
       .getByTitle("ErrorLog")
       .items.add(errordata)
-      .then(function (data) 
+      .then(function (data)   
       {
         $('.loader').hide();
-        AlertMessage("Something went wrong.please contact system admin");
+         AlertMessage("Something went wrong.please contact system admin");
       });
-  } catch (e) {
+  } catch (e) {          
     //alert(e.message);
     $('.loader').hide();
     Alert("Something went wrong.please contact system admin");
@@ -479,10 +481,10 @@ function AlertMessage(strMewssageEN) {
         window.location.href = "#";
         location.reload();
       },
-    })
+    }) 
     
     .show()
-    .setHeader("<em>Confirmation</em> ")
+    .setHeader("<div class='fw-bold alertifyConfirmation'>Confirmation</div> ")
     .set("closable", false);
 }
 
