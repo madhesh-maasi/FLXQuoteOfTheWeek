@@ -237,6 +237,10 @@ var todaymt=moment(today).format("YYYY-MM-DD");
 $("#quotes").html("");  
 $("#quotes").html(item[i].Quotesoftheweek); 
 }
+else{
+  $("#quotes").html("");  
+  $("#quotes").html("No Quotes for this weeks");
+}
 }
 
 var d = new Date();
@@ -290,9 +294,9 @@ IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
     }    
     if(count==0)
     {
-      $(".viewdateandquotes").hide();
+      $(".viewdateandquotes").hide(); 
       $("#ViewQuotesoftheweek").html("");
-      $("#ViewQuotesoftheweek").html(`<div class="text-center my-3">No Quotes for upcoming weeks</div>`)
+      $("#ViewQuotesoftheweek").html(`<div class="text-center my-3">No Quotes for this weeks</div>`);
     }
     else{
       $("#ViewQuotesoftheweek").html("");
@@ -417,7 +421,7 @@ disableallfields();
         console.log(b);
     });
   }
-  await AlertMessage("Submitted Successfully");  
+  await AlertMessage("<div class='alertfy-success'>Submitted successfully</div>");
   }
 
   async function updateQuotes() {
@@ -440,7 +444,7 @@ disableallfields();
                       count++;
                       if(count==IDarray.length)
                       {
-                        AlertMessage("Submitted Successfully");
+                        AlertMessage("<div class='alertfy-success'>Submitted successfully</div>");
                       }
                       
                     })
@@ -489,7 +493,7 @@ function AlertMessage(strMewssageEN) {
     })
     
     .show()
-    .setHeader("<em>Confirmation</em> ")
+    .setHeader("<div class='fw-bold alertifyConfirmation'>Confirmation</div> ")
     .set("closable", false);
 }
 
