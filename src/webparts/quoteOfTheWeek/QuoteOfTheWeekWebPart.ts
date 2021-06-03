@@ -243,7 +243,7 @@ var d = new Date();
   var day = d.getDay(),
       diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
   var currentdate=new Date(d.setDate(diff));
- week1=new Date(d.setDate(diff));
+ week1=currentdate. setDate(currentdate. getDate()); 
   console.log(currentdate);
 $("#add-date1").val(moment(currentdate).format("YYYY-MM-DD"));
 week2=currentdate. setDate(currentdate. getDate() + 7); 
