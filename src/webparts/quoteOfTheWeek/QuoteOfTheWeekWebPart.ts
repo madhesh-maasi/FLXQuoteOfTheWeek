@@ -106,7 +106,7 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-<div class="row my-2 justify-content-center"><div class="col-1"></div><div class="col-4 text-center fw-bolder">Date</div><div class="col-7 text-center fw-bolder">Quote</div></div>
+<div class="row my-2 justify-content-center viewdateandquotes"><div class="col-1"></div><div class="col-4 text-center fw-bolder">Date</div><div class="col-7 text-center fw-bolder">Quote</div></div>
 <div id="ViewQuotesoftheweek"></div>
 <!--<div class="row align-items-start my-3"><div class="col-1">1</div><div class="col-4"><input type="date" class="form-control" id="" aria-describedby=""></div><div class="col-7"><label>Sample</label></div></div>
 <div class="row align-items-start my-3"><div class="col-1">2</div><div class="col-4"><input type="date" class="form-control" id="" aria-describedby=""></div><div class="col-7"><label>Sample</label></div></div>
@@ -288,9 +288,16 @@ htmlforeditquotes+=`<div class="row align-items-start my-2"><div class="col-1">$
 IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
       }
     }    
-
-$("#ViewQuotesoftheweek").html("");
-$("#ViewQuotesoftheweek").html(htmlforviewquotes);
+    if(count==0)
+    {
+      $(".viewdateandquotes").hide();
+      $("#ViewQuotesoftheweek").html("");
+      $("#ViewQuotesoftheweek").html(`<div class="text-center my-3">No Quotes for upcoming weeks</div>`)
+    }
+    else{
+      $("#ViewQuotesoftheweek").html("");
+      $("#ViewQuotesoftheweek").html(htmlforviewquotes);
+    }
 
 $("#EditQuotesoftheweek").html("");
 $("#EditQuotesoftheweek").html(htmlforeditquotes);
