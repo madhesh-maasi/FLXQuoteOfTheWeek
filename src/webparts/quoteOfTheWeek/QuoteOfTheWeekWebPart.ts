@@ -239,8 +239,9 @@ $("#quotes").html("");
 $("#quotes").html(item[i].Quotesoftheweek); 
 }
 else{
+  var lastquotes=item.length-1;
   $("#quotes").html("");  
-  $("#quotes").html("No Quotes for this weeks");
+  $("#quotes").html(item[lastquotes].Quotesoftheweek);
 }
 }
 
@@ -297,7 +298,7 @@ IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
     {
       $(".viewdateandquotes").hide(); 
       $("#ViewQuotesoftheweek").html("");
-      $("#ViewQuotesoftheweek").html(`<div class="text-center my-3">No Quotes for this weeks</div>`);
+      $("#ViewQuotesoftheweek").html(`<div class="text-center my-3">No Quotes for upcoming weeks.</div>`);
     }
     else{
       $("#ViewQuotesoftheweek").html("");
