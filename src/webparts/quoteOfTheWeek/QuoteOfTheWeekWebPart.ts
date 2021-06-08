@@ -221,7 +221,7 @@ $("#add-quotes5").prop('data-intrusive','true')
 }
 
 async function getadminfromsite() {
-  //$(".loader-section").show();
+  $(".loader-section").show();
   var AdminInfo = [];
   await sp.web.siteGroups
     .getByName("FLX Admins")
