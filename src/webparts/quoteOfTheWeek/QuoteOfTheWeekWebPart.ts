@@ -30,7 +30,8 @@ var alertify: any = require("../../ExternalRef/js/alertify.min.js");
 var siteURL = "";
 var week1,week2,week3,week4,week5;
 var IDarray=[];
-
+var FilteredAdmin =[];
+var currentuser = "";
 
 export interface IQuoteOfTheWeekWebPartProps {  
   description: string;
@@ -46,8 +47,11 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
   }  
   public render(): void {    
     siteURL = this.context.pageContext.web.absoluteUrl;
-  
+    currentuser = this.context.pageContext.user.email;
     this.domElement.innerHTML = `
+    <div class="loader-section" style="display:none"> 
+    <div class="loader"></div>  
+    </div> 
     <div class="quotes-section container container-sm container-lg contaoiner-md">
 
 <div class="modal fade" id="quotesModal" tabindex="-1" aria-labelledby="quotesModalLabel" aria-hidden="true">
@@ -142,8 +146,8 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 </div>
 </div>
 </div>
-</div>`;    
-    getQuotesoftheWeek();  
+</div>`;   
+getadminfromsite();   
     $("#btnsubmit").click(async function()
     {
       await addQuotes();
@@ -216,9 +220,34 @@ $("#add-quotes5").prop('data-intrusive','true')
   }
 }
 
+async function getadminfromsite() {
+  //$(".loader-section").show();
+  var AdminInfo = [];
+  await sp.web.siteGroups
+    .getByName("FLX Admins")
+    .users.get()
+    .then(function (result) {
+      for (var i = 0; i < result.length; i++) {
+        AdminInfo.push({
+          Title: result[i].Title,
+          ID: result[i].Id,
+          Email: result[i].Email,
+        });
+      }
+      FilteredAdmin = AdminInfo.filter((admin)=>{return (admin.Email == currentuser)});
+      console.log(FilteredAdmin);
+      getQuotesoftheWeek();
+    })
+    .catch(function (err) {
+      alert("Group not found: " + err);
+      $(".loader-section").hide();
+    });
+    $(".loader-section").hide();
+}
 
 async function getQuotesoftheWeek()
 {
+  $(".loader-section").show();
   await sp.web.lists.getByTitle("Quotesoftheweek").items.select("*").get().then(async (item)=>
   {
     var today = new Date();
@@ -304,6 +333,13 @@ IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
       $("#ViewQuotesoftheweek").html("");
       $("#ViewQuotesoftheweek").html(htmlforviewquotes);
     }
+    if (FilteredAdmin.length>0) 
+        {
+          $("#btnadd").show();
+        }
+        else{
+          $("#btnadd").hide();
+        }
 
 $("#EditQuotesoftheweek").html("");
 $("#EditQuotesoftheweek").html(htmlforeditquotes);
@@ -336,10 +372,11 @@ disableallfields();
   }).catch((error) => {
     ErrorCallBack(error, "viewQuotes");
   });
+  $(".loader-section").hide();
 }
 
   async function addQuotes() {
-
+    $(".loader-section").show();
   let list = sp.web.lists.getByTitle('Quotesoftheweek');
   console.log(list);
   
@@ -424,9 +461,11 @@ disableallfields();
     });
   }
   await AlertMessage("<div class='alertfy-success'>Submitted successfully</div>");
+  $(".loader-section").hide();
   }
 
   async function updateQuotes() {
+    $(".loader-section").show();
     $('.update-quotes').each(function()
     {
     IDarray[$(this).attr('data-index')].Quotesoftheweek=$(this).val();
@@ -453,7 +492,7 @@ disableallfields();
                     .catch(function (error) {
                       ErrorCallBack(error, "updateQuotes");
                     });
-                    
+                    $(".loader-section").hide();
                   } 
     }
 
@@ -471,12 +510,12 @@ disableallfields();
       .items.add(errordata)
       .then(function (data) 
       {
-        $('.loader').hide();
+        $(".loader-section").hide();
         AlertMessage("Something went wrong.please contact system admin");
       });
   } catch (e) {
     //alert(e.message);
-    $('.loader').hide();
+    $(".loader-section").hide();
     Alert("Something went wrong.please contact system admin");
   }
 }
@@ -509,6 +548,7 @@ function Alert(strMewssageEN) {
 
       onok: function () {
         window.location.href = "#";
+        $(".loader-section").hide();
       },
     })
     
