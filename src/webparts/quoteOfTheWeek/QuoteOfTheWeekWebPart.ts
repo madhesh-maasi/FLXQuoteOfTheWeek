@@ -134,7 +134,7 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 </div>
 <div class="section-action my-2 mx-2 row align-items-center justify-content-end">
 <div class="col p-0 d-flex align-items-center justify-content-end">
-<span class="action-btn action-view mx-1" data-bs-toggle="modal" data-bs-target="#quotesViewModal"></span>
+<span class="action-btn action-view mx-1" data-bs-toggle="modal" data-bs-target="#quotesViewModal" id="btnview"></span>
 <span class="action-btn action-add mx-1" data-bs-toggle="modal" data-bs-target="#quotesModal" id="btnadd"></span>
 </div>
 </div>    
@@ -336,9 +336,11 @@ IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
     if (FilteredAdmin.length>0) 
         {
           $("#btnadd").show();
+          $("#btnview").show();
         }
         else{
           $("#btnadd").hide();
+          $("#btnview").hide();
         }
 
 $("#EditQuotesoftheweek").html("");

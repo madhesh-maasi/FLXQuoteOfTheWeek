@@ -127,6 +127,7 @@ textarea.form-control {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .action-add {
   width: 1rem;
@@ -135,6 +136,7 @@ textarea.form-control {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .quote-modal label {
   word-break: break-all;
