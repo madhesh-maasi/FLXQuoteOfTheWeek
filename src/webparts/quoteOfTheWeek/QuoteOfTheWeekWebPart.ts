@@ -221,7 +221,6 @@ $("#add-quotes5").prop('data-intrusive','true')
 }
 
 async function getadminfromsite() {
-  $(".loader-section").show();
   var AdminInfo = [];
   await sp.web.siteGroups
     .getByName("FLX Admins")
@@ -240,14 +239,14 @@ async function getadminfromsite() {
     })
     .catch(function (err) {
       alert("Group not found: " + err);
-      $(".loader-section").hide();
+     
     });
-    $(".loader-section").hide();
+    
 }
 
 async function getQuotesoftheWeek()
 {
-  $(".loader-section").show();
+  
   await sp.web.lists.getByTitle("Quotesoftheweek").items.select("*").get().then(async (item)=>
   {
     var today = new Date();
@@ -374,7 +373,6 @@ disableallfields();
   }).catch((error) => {
     ErrorCallBack(error, "viewQuotes");
   });
-  $(".loader-section").hide();
 }
 
   async function addQuotes() {
