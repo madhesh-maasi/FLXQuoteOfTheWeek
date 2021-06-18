@@ -246,7 +246,7 @@ async function getadminfromsite() {
 
 async function getQuotesoftheWeek()
 {
-  
+  var count=0;
   await sp.web.lists.getByTitle("Quotesoftheweek").items.select("*").get().then(async (item)=>
   {
     var today = new Date();
@@ -262,11 +262,11 @@ var enddatemt=moment(enddate).format("YYYY-MM-DD");
 var todaymt=moment(today).format("YYYY-MM-DD");
 
       if(todaymt >= startdatemt && todaymt < enddatemt || todaymt > startdatemt && todaymt <= enddatemt){
-
+count=1;
 $("#quotes").html("");  
 $("#quotes").html(item[i].Quotesoftheweek); 
 }
-else{
+if(count==0){
   var lastquotes=item.length-1;
   $("#quotes").html("");  
   $("#quotes").html(item[lastquotes].Quotesoftheweek);
