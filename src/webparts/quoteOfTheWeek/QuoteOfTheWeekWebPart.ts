@@ -150,10 +150,12 @@ export default class QuoteOfTheWeekWebPart extends BaseClientSideWebPart<IQuoteO
 getadminfromsite();   
     $("#btnsubmit").click(async function()
     {
+      $(".modal-dialog").hide();
       await addQuotes();
     });
     $("#btnupdate").click(async function()
     {
+      $(".modal-dialog").hide();
       await updateQuotes();
     });
     $("#btnclose").click(async function()
@@ -316,8 +318,9 @@ var week5mt=moment(week5).format("YYYY-MM-DD");
 
       if(week1mt >= startdatemt && week1mt < enddatemt || week2mt >= startdatemt && week2mt < enddatemt || week3mt >= startdatemt && week3mt < enddatemt || week4mt >= startdatemt && week4mt < enddatemt || week5mt >= startdatemt && week5mt < enddatemt){
         count++;
+        if(item[i].Quotesoftheweek!=null){
 htmlforviewquotes+=`<div class="row align-items-start my-4 mx-2"><div class="col-1">${count}</div><div class="col-4"><input type="date" class="form-control disabledate rounded-0" id="" aria-describedby="" value="${startdatemt}"></div><div class="col-7 divlabel"><label>${item[i].Quotesoftheweek}</label></div></div>`;
-
+      }
 htmlforeditquotes+=`<div class="row align-items-start my-2"><div class="col-1">${count}</div><div class="col-4"><input type="date" class="form-control disabledate" id="update-date${count}" aria-describedby="" value="${startdatemt}" ></div><div class="col-7"><textarea class="form-control update-quotes" id="update-quotes${count}" aria-describedby="" data-index=${count-1}>${item[i].Quotesoftheweek}</textarea></div></div>`;
 IDarray.push({"ID":item[i].ID,"Quotesoftheweek":item[i].Quotesoftheweek});
       }
@@ -346,29 +349,30 @@ $("#EditQuotesoftheweek").html("");
 $("#EditQuotesoftheweek").html(htmlforeditquotes);
 for(var i=0;i<IDarray.length;i++)
 {  
-if(IDarray[0]){
-$("#add-quotes1").val(IDarray[0].Quotesoftheweek);
-$("#add-quotes1").prop('data-intrusive','true')
+  var idcnt=i;
+  idcnt++;
+if(IDarray[i]){
+$("#add-quotes"+idcnt).val(IDarray[i].Quotesoftheweek);
+$("#add-quotes"+idcnt).prop('data-intrusive','true')
   }
-  if(IDarray[1]){
-$("#add-quotes2").val(IDarray[1].Quotesoftheweek);
-$("#add-quotes2").prop('data-intrusive','true')
-  }
-  if(IDarray[2]){
-$("#add-quotes3").val(IDarray[2].Quotesoftheweek);
-$("#add-quotes3").prop('data-intrusive','true')
-  }
-  if(IDarray[3]){
-$("#add-quotes4").val(IDarray[3].Quotesoftheweek);
-$("#add-quotes4").prop('data-intrusive','true')
-  }
-if(IDarray[4]){
-$("#add-quotes5").val(IDarray[4].Quotesoftheweek);
-$("#add-quotes5").prop('data-intrusive','true')
-}
+//   if(IDarray[1]){
+// $("#add-quotes2").val(IDarray[1].Quotesoftheweek);
+// $("#add-quotes2").prop('data-intrusive','true')
+//   }
+//   if(IDarray[2]){
+// $("#add-quotes3").val(IDarray[2].Quotesoftheweek);
+// $("#add-quotes3").prop('data-intrusive','true')
+//   }
+//   if(IDarray[3]){
+// $("#add-quotes4").val(IDarray[3].Quotesoftheweek);
+// $("#add-quotes4").prop('data-intrusive','true')
+//   }
+// if(IDarray[4]){
+// $("#add-quotes5").val(IDarray[4].Quotesoftheweek);
+// $("#add-quotes5").prop('data-intrusive','true')
+// }
 
 }
-
 disableallfields(); 
   }).catch((error) => {
     ErrorCallBack(error, "viewQuotes");
@@ -380,7 +384,7 @@ disableallfields();
   let list = sp.web.lists.getByTitle('Quotesoftheweek');
   console.log(list);
   
-    if($("#add-quotes1").prop('data-intrusive') && $("#add-quotes1").val()!=""){
+    if($("#add-quotes1").prop('data-intrusive')){
     list.items.getById(IDarray[0].ID).update({ 
       WeekStartDate: $("#add-date1").val(),
       Quotesoftheweek:$("#add-quotes1").val()
@@ -396,7 +400,7 @@ disableallfields();
         console.log(b);
     });
   }
-  if($("#add-quotes2").prop('data-intrusive') && $("#add-quotes2").val()!=""){
+  if($("#add-quotes2").prop('data-intrusive')){
     list.items.getById(IDarray[1].ID).update({ 
       WeekStartDate: $("#add-date2").val(),
       Quotesoftheweek:$("#add-quotes2").val()
@@ -412,7 +416,7 @@ disableallfields();
         console.log(b);
     });
   }
-  if($("#add-quotes3").prop('data-intrusive') && $("#add-quotes3").val()!=""){
+  if($("#add-quotes3").prop('data-intrusive')){
     list.items.getById(IDarray[2].ID).update({ 
       WeekStartDate: $("#add-date3").val(),
       Quotesoftheweek:$("#add-quotes3").val()
@@ -428,7 +432,7 @@ disableallfields();
         console.log(b);
     });
   }
-  if($("#add-quotes4").prop('data-intrusive') && $("#add-quotes4").val()!=""){
+  if($("#add-quotes4").prop('data-intrusive')){
     list.items.getById(IDarray[3].ID).update({ 
       WeekStartDate: $("#add-date4").val(),
       Quotesoftheweek:$("#add-quotes4").val()
@@ -444,7 +448,7 @@ disableallfields();
         console.log(b);
     });
   }
-  if($("#add-quotes5").prop('data-intrusive') && $("#add-quotes5").val()!=""){
+  if($("#add-quotes5").prop('data-intrusive')){
     list.items.getById(IDarray[4].ID).update({ 
       WeekStartDate: $("#add-date5").val(),
       Quotesoftheweek:$("#add-quotes5").val()
